@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="back.css">
+
+    <script src="index.js"></script>
+</head>
+<body>
+    <section class="form-section">
+        <h1 class="section-title">Formulario datos</h1>
+        <div class="forms">
+          <div class="form-wrapper is-active">
+            </button>
+            <form class="form form-login" action="validar.php" method="POST" enctype="multipart/form-data">
+              <fieldset>
+                <legend>Porfavor, introduce tu correo y tu contraseña para iniciar sesión.</legend>
+                <div class="input-block">
+                  <label for="login-email">Título</label>
+                  <input id="login-email" type="email" name="email_login" required>
+                </div>
+                <div class="input-block">
+                  <label for="login-password">Resumen</label>
+                  <input id="login-password" type="text" name="contraseña_login" required  >
+                </div>
+                <div class="input-block">
+                    <label for="login-password">Descripción</label>
+                    <input id="login-password" type="text" style="height: 80px;" name="contraseña_login" required  >
+                </div>
+                <div class="inputs">
+                    <div class="input-block">
+                        <label for="login-password">Archivo1</label>
+                    </div>
+                    <input type="file">
+                    <div class="input-block">
+                        <label for="login-password">Archivo2</label>
+                    </div>
+                    <input type="file">
+                </div>
+              </fieldset>
+              <button type="submit" class="btn-login">Enviar</button>
+              <button type="submit" class="btn-login">Borrar</button>
+              <hr>
+            </form>
+          </div>
+          
+</body>
+</html>
