@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-	<title>Contact Form 07</title>
+	<title>Nuevo Post</title>
+	<link rel="shortcut icon" href="img/descarga.png">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -31,6 +32,11 @@
 									<div id="form-message-warning" class="mb-4"></div>
 									<form method="POST" enctype="multipart/form-data" id="contactForm" name="contactForm" class="contactForm" action="upload.php">
 										<div class="row">
+										<div class="col-md-12">
+												<div class="form-group">
+													<input type="text" class="form-control" name="pais" id="subject" placeholder="Pais">
+												</div>
+											</div>
 											<div class="col-md-12">
 												<div class="form-group">
 													<input type="text" class="form-control" name="title" id="subject" placeholder="Titulo">
@@ -43,17 +49,17 @@
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
+													<textarea name="message" class="form-control" id="message" cols="30" rows="6" placeholder="Pie de foto"></textarea>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
 													<input type="file" class="form-control" name="IMGupload" id="subject" placeholder="Subir imagen principal" accept="image/*">
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
 													<input type="file" class="form-control" name="IMGupload2" id="subject" placeholder="Subir imagen secundaria" accept="image/*">
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<textarea name="message" class="form-control" id="message" cols="30" rows="6" placeholder="Pie de foto"></textarea>
 												</div>
 											</div>
 											<div class="col-md-12">
@@ -80,7 +86,7 @@
 									$conex= mysqli_connect('localhost', 'root', '', 'IMGEuro');
 									$query = mysqli_query($conex, "SELECT * FROM contenido");
 									$posta[] = mysqli_fetch_array($query);
-
+									$counter=0;
 									foreach($query as $posta){
 										$TITLE = $posta['TITLE'];
 										$STITLE = $posta['SUBTITLE'];
@@ -109,21 +115,27 @@
 
 
 										</head>
-										<form method='GET' enctype='multipart/form-data' id='UpdateForm' name='UpdateForm' class='UpdateForm' action='update.php'>
+										<form method='POST' enctype='multipart/form-data' id='UpdateForm' name='UpdateForm' class='UpdateForm' action='update.php'>
 										<div class='col-md-12'>	
 											<input type='file' class='form-control' name='IMGupload' id='subject'  accept='image/*'>
 											<div class='form-group'>
-												<img name='updatedIMG' src='$IMG1' style='width:100%;height:100%;'>
-												<input type='submit' value='Enviar' class='btn btn-primary'>
+												<img name='updatedIMG' src='$IMG1' style='width:100%;height:100%;'>";
+												$IMG[$counter]=$IMG1;
+												$counter++;
+												echo"
+												<input type='submit' name='img".$counter,"' value='Enviar' class='btn btn-primary'>
 											</div>
 										</div>
 										</form>
-										<form method='GET' enctype='multipart/form-data' id='UpdateForm' name='UpdateForm' class='UpdateForm' action='update.php'>
+										<form method='POST' enctype='multipart/form-data' id='UpdateForm' name='UpdateForm' class='UpdateForm' action='update.php'>
 										<div class='col-md-12'>	
 											<input type='file' class='form-control' name='IMGupload' id='subject'  accept='image/*'>
 											<div class='form-group'>
-												<img name='updatedIMG' src='$IMG2' style='width:100%;height:100%;'>
-												<input type='submit' value='Enviar' class='btn btn-primary'>
+												<img name='updatedIMG' src='$IMG2' style='width:100%;height:100%;'>";
+												$IMG[$counter]=$IMG2;
+												$counter++;
+												echo"
+												<input type='submit' name='img1".$counter,"' value='Enviar' class='btn btn-primary'>
 											</div>
 										</div>
 										</form>

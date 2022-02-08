@@ -55,7 +55,7 @@
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
 
     <!-- Fav Icon -->
-    <link rel="shortcut icon" href="#">
+    <link rel="shortcut icon" href="img/descarga.png">
 
     <link rel="apple-touch-icon" href="#">
     <link rel="apple-touch-icon" sizes="114x114" href="#">
@@ -108,49 +108,65 @@
     <!-- Our Work Section -->
     <div id="work" class="page">
         <?php
+
         $conex= mysqli_connect('localhost', 'root', '', 'IMGEuro');
-        $query = mysqli_query($conex, "SELECT * FROM contenido");
-        $posta[] = mysqli_fetch_array($query);
+       
+       
+        $queryP = mysqli_query($conex, "SELECT DISTINCT PAIS FROM contenido");
+        //if(){}
+        $paises[]= mysqli_fetch_array($queryP);
 
-        foreach($query as $posta){
-            $TITLE = $posta['TITLE'];
-            $STITLE = $posta['SUBTITLE'];
-            $TEXTO = $posta['TEXTO'];
-            $IMG1 =$posta['IMG1'];
-            $IMG2 =$posta['IMG2'];
+        foreach($queryP as $paises){
+            $PAIS = $paises['PAIS'];
+            echo"<h1 style='margin-left:20px;'> $PAIS</h1>";
+            $query = mysqli_query($conex, "SELECT * FROM contenido where PAIS='$PAIS'");
+            $posta[] = mysqli_fetch_array($query);
+            foreach($query as $posta){
+               
+                $TITLE = $posta['TITLE'];
+                $STITLE = $posta['SUBTITLE'];
+                $TEXTO = $posta['TEXTO'];
+                $IMG1 =$posta['IMG1'];
+                $IMG2 =$posta['IMG2'];
+                $POSTAPAIS = $posta['PAIS'];
 
-            echo "  
-                <head>
-                    <style>
-                        
-                    
-                        img{
+                    echo "  
+                        <head>
+                            <style>
+                                #content{
+                                    margin-left:20px;
+                                }
                             
-                            display: flex;
-                            flex-wrap: wrap;
-                        
-                        }
-
-
-                    </style>
-
-
-                </head>
-                <form method='GET' enctype='multipart/form-data' id='UpdateForm' name='UpdateForm' class='UpdateForm' action='update.php'>
-                <div class='col-md-12'>	
-                    <div class='form-group'>
-                        <h2>$TITLE</h2>
-                        <h3>$STITLE</h3>
-                        <img name='updatedIMG' src='$IMG1' style='width:25%;height:25%;'>
-                        <p style='margin-right:50%;'>$TEXTO</p>
-                        <img name='updatedIMG' src='$IMG2' style='width:25%;height:25%;'>
-                        
-                       
-                    </div>
-                </div>
-                </form>
-
-            ";
+                                img{
+                                    
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                
+                                }
+        
+        
+                            </style>
+        
+        
+                        </head>
+                        <form method='GET' enctype='multipart/form-data' id='UpdateForm' name='UpdateForm' class='UpdateForm' action='update.php'>
+                        <div class='col-md-12'>	
+                            <div class='form-group' id='content'>
+                                
+                                <h2>$TITLE</h2>
+                                <h3>$STITLE</h3>
+                                <p style='margin-right:50%;'>$TEXTO</p>
+                                <img name='updatedIMG' src='$IMG1' style='width:25%;height:25%;'>
+                                <img name='updatedIMG' src='$IMG2' style='width:25%;height:25%;'>
+                                
+                               
+                            </div>
+                        </div>
+                        </form>
+        
+                    ";
+                
+            }
         }
         ?>
         <footer>
