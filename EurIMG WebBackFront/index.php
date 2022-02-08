@@ -39,7 +39,7 @@
 												<button type="submit" class="btn mt-4" name="login">Enviar</button>
 
 											</form>
-                            				<p class="mb-0 mt-4 text-center"><a href="#0" class="link">No eres administrador?  accede a la web aquí</a></p>
+                            				<p class="mb-0 mt-4 text-center"><a href="front.php" class="link">No eres administrador?  accede a la web aquí</a></p>
 				      					</div>
 			      					</div>
 			      				</div>

@@ -17,12 +17,15 @@ if (isset($_POST['registrar'])) {
     //comprobamos si estan vacios los datos necesarios
     if (empty($usuario)) {
         array_push($errores, "El nombre de usuario es requerido");
+        header("refresh:0.5; url=index.php");
     }
     if (empty($email)) {
         array_push($errores, "El email es requerido");
+        header("refresh:0.5; url=index.php");
     }
     if (empty($contra)) {
         array_push($errores, "La contraseña es requerida");
+        header("refresh:0.5; url=index.php");
     }
 
     //comprobamos que los datos no han sido usados antes
@@ -33,18 +36,20 @@ if (isset($_POST['registrar'])) {
     if ($user) { // si el usuario existe
         if ($user['regusername'] === $username) {
             array_push($errores, "Username already exists");
+            header("refresh:0.5; url=index.php");
         }
 
         if ($user['regemail'] === $email) { //si el email ya está registrado
             array_push($errores, "email already exists");
+            header("refresh:0.5; url=index.php");
         }
     }
 
     if (count($errores) == 0) { //si existen 0 errores en nuestras comprobaciónes haremos el registro
-        $ENCpass = md5($contra); //encriptamos la contraseña
-        $query = "INSERT INTO usuarios (NOMBREAPELL,EMAIL,USUARIO,PASS) VALUES('$nombre','$email','$usuario', '$ENCpass')";
+        $query = "INSERT INTO usuarios (NOMBREAPELL,EMAIL,USUARIO,PASS) VALUES('$nombre','$email','$usuario', '$contra')";
         mysqli_query($BD, $query);
         mysqli_close($BD);
+        header("refresh:0.5; url=index.php");
     }
 
 }

@@ -1,31 +1,24 @@
 <?php
-$BD = mysqli_connect('localhost', 'root', '', 'IMGEuro');
-$BD->set_charset('utf8');
-$errores = array();
-if (isset($_POST['login'])) {
-  $email =  $_POST['logemail'];
-  $password =  $_POST['logpass'];
 
-  if (empty($email)) {
-  	array_push($errores, "Email is required");
-  }
-  if (empty($password)) {
-  	array_push($errores, "Password is required");
-  }
+$email= $_POST['logemail'];
+$contraseña= $_POST['logpass'];
 
-  if (count($errores) == 0) {
-  	$password = md5($password);
-  	$query = "SELECT EMAIL FROM users WHERE EMAIL='$email'";
-    $query2 = "SELECT PASS FROM users WHERE PASS='$password'";
-  	$resultsEm = mysqli_query($BD, $query);
-    $resultsPass = mysqli_query($BD, $query2);
-  	if ($logged == mysqli_fetch_assoc($resultsEm) & $logged == mysqli_fetch_assoc($resultsPass)) {
-        
-        print("Login correcto");
-  	}else {
-  		array_push($errores, "Wrong username/password combination");
-  	}
-  }
-}
+$conex= mysqli_connect('localhost', 'root', '', 'IMGEuro');
+$query1 = mysqli_query($conex, "SELECT EMAIL FROM usuarios WHERE EMAIL ='$email'");
+$query2 = mysqli_query($conex, "SELECT PASS FROM usuarios WHERE PASS ='$contraseña'");
 
+    if($user = mysqli_fetch_assoc($query1)) {
+    
+    } else {
+        echo "EMAIL INCORRECTO";
+        header("refresh:2; url=index.php");
+        exit;
+    }
+    if($user = mysqli_fetch_assoc($query2)) {
+        print "LOGIN CORRECTO";
+        header("refresh:0.2 url=back.php");
+    } else {
+        echo "CONTRASEÑA INCORRECTA";
+        header("refresh:0.2 url=index.php");
+    }
 ?>
